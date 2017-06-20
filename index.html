@@ -1,11 +1,35 @@
 <html>
     <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="theme.css">
+        <link title="timeline-styles" rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
     </head>
 
     <body>
-        <iframe src='https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1fel0nXgVay1WiTFLKqGIUgtg8TUU6H4SpmlH7LOp9UU&font=Default&lang=en&initial_zoom=2&height=650' width='100%' height='650' webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder='0'>
-            
-        </iframe>
+        <nav>
+            <button onclick="toggle('homestuck')">Toggle Homestuck Albums</button>
+            <button onclick="toggle('unofficial')">Toggle Unofficial Albums</button>
+            <button onclick="toggle('canwc')">Toggle CaNWC Albums</button>
+        </nav>
+        <div id='timeline-embed' style="width: auto; height: 650px"></div>
+        <script src="timeline.js"></script>
+        <script type="text/javascript">
+            timeline = new TL.Timeline('timeline-embed', 'https://docs.google.com/spreadsheets/d/1fel0nXgVay1WiTFLKqGIUgtg8TUU6H4SpmlH7LOp9UU/pubhtml');
+        </script>
+        <script>
+            function toggle(type) {
+                var timeMarkers = document.getElementsByClassName('tl-timemarker');
+                Array.prototype.forEach.call(timeMarkers, function(marker) {
+                    console.log(marker);
+                    if (marker.getAttribute('data-type') === type) {
+                        if(marker.style.display == "none")
+                            marker.style.display = "block";
+                        else
+                            marker.style.display = "none";
+                    }
+                });
+                //alert(text);
+            }
+        </script>
     </body>
 </html>
